@@ -151,12 +151,17 @@ class TestBurger:
         # Act
         receipt = burger.get_receipt()
         
-        # Assert
-        assert "(==== white bun ====)" in receipt
-        assert "= sauce hot sauce =" in receipt
-        assert "= filling cutlet =" in receipt
-        assert "(==== white bun ====)" in receipt
-        assert "\nPrice: 650" in receipt or "Price: 650" in receipt
+        # Assert - проверяем весь чек целиком
+        expected_receipt = (
+            "(==== white bun ====)\n"
+            "= sauce hot sauce =\n"
+            "= filling cutlet =\n"
+            "(==== white bun ====)\n"
+            "\n"
+            "Price: 650"
+        )
+        
+        assert receipt == expected_receipt
     
     def test_burger_with_only_bun_price(self):
         """Тест цены бургера только с булочкой"""
